@@ -1,0 +1,223 @@
+// Timer regressivo
+function startTimer() {
+    // Define o tempo inicial (8 horas em segundos)
+    let timeLeft = 8 * 60 * 60; // 8 horas
+    
+    const hoursElement = document.getElementById('hours');
+    const minutesElement = document.getElementById('minutes');
+    const secondsElement = document.getElementById('seconds');
+    
+    function updateTimer() {
+        const hours = Math.floor(timeLeft / 3600);
+        const minutes = Math.floor((timeLeft % 3600) / 60);
+        const seconds = timeLeft % 60;
+        
+        hoursElement.textContent = hours.toString().padStart(2, '0');
+        minutesElement.textContent = minutes.toString().padStart(2, '0');
+        secondsElement.textContent = seconds.toString().padStart(2, '0');
+        
+        if (timeLeft > 0) {
+            timeLeft--;
+        } else {
+            // Reinicia o timer quando chega a zero
+            timeLeft = 8 * 60 * 60;
+        }
+    }
+    
+    // Atualiza o timer imediatamente
+    updateTimer();
+    
+    // Atualiza a cada segundo
+    setInterval(updateTimer, 1000);
+}
+
+// Animações de scroll
+function handleScrollAnimations() {
+    const fadeElements = document.querySelectorAll('.fade-in');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    fadeElements.forEach(element => {
+        observer.observe(element);
+    });
+}
+
+// Smooth scroll para âncoras
+function handleSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+}
+
+// Adiciona efeito de hover nos botões CTA
+function enhanceCTAButtons() {
+    const ctaButtons = document.querySelectorAll('.cta-button');
+    
+    ctaButtons.forEach(button => {
+        button.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px) scale(1.02)';
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+        
+        // Adiciona efeito de clique
+        button.addEventListener('click', function(e) {
+            // Agora os botões têm links reais, não precisamos prevenir o comportamento padrão
+            // O link do WhatsApp será aberto normalmente
+        });
+    });
+}
+
+// Adiciona partículas flutuantes no hero
+function createFloatingParticles() {
+    const hero = document.querySelector('.hero');
+    const particleCount = 20;
+    
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.cssText = `
+            position: absolute;
+            width: ${Math.random() * 6 + 2}px;
+            height: ${Math.random() * 6 + 2}px;
+            background: rgba(255, 255, 255, ${Math.random() * 0.5 + 0.2});
+            border-radius: 50%;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation: float ${Math.random() * 3 + 2}s ease-in-out infinite alternate;
+            z-index: 1;
+        `;
+        hero.appendChild(particle);
+    }
+    
+    // Adiciona CSS para animação das partículas
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 0.3;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Adiciona efeito de digitação no título
+function typewriterEffect() {
+    const title = document.querySelector('.hero-title');
+    const originalHTML = title.innerHTML;
+    const textContent = '🔥 Últimas vagas para entrar no grupo secreto de Achadinhos Shopee & Amazon!';
+    title.innerHTML = '';
+    title.style.borderRight = '2px solid #ffeb3b';
+    
+    let i = 0;
+    function typeWriter() {
+        if (i < textContent.length) {
+            const currentText = textContent.substring(0, i + 1);
+            // Aplica o highlight apenas na parte "Achadinhos Shopee & Amazon!"
+            if (currentText.includes('Achadinhos Shopee & Amazon!')) {
+                const beforeHighlight = currentText.substring(0, currentText.indexOf('Achadinhos'));
+                const highlightText = currentText.substring(currentText.indexOf('Achadinhos'));
+                title.innerHTML = beforeHighlight + '<span class="highlight">' + highlightText + '</span>';
+            } else {
+                title.innerHTML = currentText;
+            }
+            i++;
+            setTimeout(typeWriter, 50);
+        } else {
+            // Restaura o HTML original com o highlight correto
+            title.innerHTML = '🔥 Últimas vagas para entrar no grupo secreto de <span class="highlight">Achadinhos Shopee & Amazon!</span>';
+            title.style.borderRight = 'none';
+        }
+    }
+    
+    // Inicia o efeito após um pequeno delay
+    setTimeout(typeWriter, 500);
+}
+
+// Adiciona contador de visitantes fake
+function addVisitorCounter() {
+    const hero = document.querySelector('.hero-content');
+    const counter = document.createElement('div');
+    counter.className = 'visitor-counter';
+    counter.style.cssText = `
+        background: rgba(255, 255, 255, 0.1);
+        padding: 10px 20px;
+        border-radius: 25px;
+        margin-top: 20px;
+        font-size: 0.9rem;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    `;
+    
+    const baseCount = 1247;
+    const currentCount = baseCount + Math.floor(Math.random() * 50);
+    counter.innerHTML = `🔥 ${currentCount} pessoas visualizando agora`;
+    
+    hero.appendChild(counter);
+    
+    // Atualiza o contador a cada 10 segundos
+    setInterval(() => {
+        const newCount = baseCount + Math.floor(Math.random() * 50);
+        counter.innerHTML = `🔥 ${newCount} pessoas visualizando agora`;
+    }, 10000);
+}
+
+// Inicialização quando o DOM estiver carregado
+document.addEventListener('DOMContentLoaded', function() {
+    startTimer();
+    handleScrollAnimations();
+    handleSmoothScroll();
+    enhanceCTAButtons();
+    createFloatingParticles();
+    addVisitorCounter();
+    
+    // Adiciona efeito de digitação após um delay
+    setTimeout(typewriterEffect, 1000);
+    
+    // Adiciona classe para animações CSS
+    document.body.classList.add('loaded');
+});
+
+// Adiciona efeito de parallax suave
+window.addEventListener('scroll', function() {
+    const scrolled = window.pageYOffset;
+    const hero = document.querySelector('.hero');
+    const rate = scrolled * -0.5;
+    
+    if (hero) {
+        hero.style.transform = `translateY(${rate}px)`;
+    }
+});
+
+// Previne o comportamento padrão dos links enquanto não há URL real
+document.addEventListener('click', function(e) {
+    if (e.target.matches('a[href="#"]')) {
+        e.preventDefault();
+    }
+});

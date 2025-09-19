@@ -1,0 +1,23 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Círculo externo -->
+  <circle cx="60" cy="60" r="58" fill="#4CAF50" stroke="#2E7D32" stroke-width="2"/>
+  
+  <!-- Círculo interno -->
+  <circle cx="60" cy="60" r="48" fill="#66BB6A" stroke="#4CAF50" stroke-width="1"/>
+  
+  <!-- Escudo -->
+  <path d="M60 25 L45 35 L45 55 Q45 70 60 80 Q75 70 75 55 L75 35 Z" fill="white" stroke="#2E7D32" stroke-width="2"/>
+  
+  <!-- Check mark -->
+  <path d="M52 55 L58 61 L68 45" stroke="#4CAF50" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Texto "100%" -->
+  <text x="60" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">100%</text>
+  
+  <!-- Texto "SEGURO" -->
+  <text x="60" y="108" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="white">SEGURO</text>
+  
+  <!-- Brilho -->
+  <circle cx="50" cy="45" r="3" fill="rgba(255,255,255,0.6)"/>
+  <circle cx="70" cy="40" r="2" fill="rgba(255,255,255,0.4)"/>
+</svg>
