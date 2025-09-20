@@ -1,0 +1,31 @@
+{
+  "name": "acha-dinhos-landing",
+  "version": "1.0.0",
+  "description": "Landing page para o grupo Acha Dinhos com analytics integrado",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx http-server -p 8080",
+    "start": "npx http-server -p 8080",
+    "build": "echo 'Build completed'",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "landing-page",
+    "acha-dinhos",
+    "shopee",
+    "amazon",
+    "analytics"
+  ],
+  "author": "JvMeloxx",
+  "license": "MIT",
+  "dependencies": {
+    "@vercel/analytics": "^1.5.0"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JvMeloxx/pag-grupo.git"
+  }
+}
