@@ -13,7 +13,6 @@
     }
   ],
   "outputDirectory": ".",
-  "functions": {},
   "rewrites": [
     {
       "source": "/(.*)",
