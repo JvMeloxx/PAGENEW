@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "npx http-server -p 8080",
     "start": "npx http-server -p 8080",
-    "build": "if not exist public mkdir public && copy index.html public\\ && copy styles.css public\\ && copy script.js public\\ && copy logo.svg public\\ && copy selo-seguro.svg public\\ && if not exist public\\logo mkdir public\\logo && copy logo\\\"Camada 2.png\" public\\logo\\",
+    "build": "node -e \"const fs = require('fs'); if (!fs.existsSync('public')) fs.mkdirSync('public'); if (!fs.existsSync('public/logo')) fs.mkdirSync('public/logo'); const files = ['index.html', 'styles.css', 'script.js', 'logo.svg', 'selo-seguro.svg']; files.forEach(f => fs.copyFileSync(f, 'public/' + f)); fs.copyFileSync('logo/Camada 2.png', 'public/logo/Camada 2.png');\"",
     "deploy": "vercel --prod"
   },
   "keywords": [
