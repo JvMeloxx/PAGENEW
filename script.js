@@ -194,11 +194,22 @@ function trackLeadEvents() {
     const mainCTA = document.getElementById('main-cta');
     if (mainCTA) {
         mainCTA.addEventListener('click', function() {
+            // Vercel Analytics
             if (window.va) {
                 window.va('track', 'Lead Click', {
                     button: 'main-cta',
                     location: 'hero-section',
                     timestamp: new Date().toISOString()
+                });
+            }
+            
+            // Facebook Pixel - InitiateCheckout (clique no WhatsApp)
+            if (window.fbq) {
+                window.fbq('track', 'InitiateCheckout', {
+                    content_name: 'WhatsApp CTA Click',
+                    content_category: 'Lead Generation',
+                    value: 1,
+                    currency: 'BRL'
                 });
             }
         });
@@ -208,11 +219,22 @@ function trackLeadEvents() {
     const ctaButtons = document.querySelectorAll('.cta-button');
     ctaButtons.forEach((button, index) => {
         button.addEventListener('click', function() {
+            // Vercel Analytics
             if (window.va) {
                 window.va('track', 'CTA Click', {
                     button_index: index,
                     button_text: button.textContent.trim(),
                     timestamp: new Date().toISOString()
+                });
+            }
+            
+            // Facebook Pixel - InitiateCheckout para todos os CTAs
+            if (window.fbq) {
+                window.fbq('track', 'InitiateCheckout', {
+                    content_name: button.textContent.trim(),
+                    content_category: 'CTA Button',
+                    value: 1,
+                    currency: 'BRL'
                 });
             }
         });
@@ -257,6 +279,31 @@ function trackLeadEvents() {
     });
 }
 
+// Função para simular evento Lead (quando preenche formulário)
+function trackLeadFormSubmission() {
+    // Como não há formulário real, vamos simular com base em engajamento alto
+    let highEngagementTracked = false;
+    
+    // Rastrear Lead baseado em tempo na página + scroll profundo
+    setTimeout(() => {
+        const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+        
+        if (scrollPercent >= 50 && !highEngagementTracked) {
+            highEngagementTracked = true;
+            
+            // Facebook Pixel - Lead (engajamento alto)
+            if (window.fbq) {
+                window.fbq('track', 'Lead', {
+                    content_name: 'High Engagement Lead',
+                    content_category: 'Lead Generation',
+                    value: 5,
+                    currency: 'BRL'
+                });
+            }
+        }
+    }, 30000); // Após 30 segundos na página
+}
+
 // Inicialização quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', function() {
     startTimer();
@@ -266,6 +313,7 @@ document.addEventListener('DOMContentLoaded', function() {
     createFloatingParticles();
     addVisitorCounter();
     trackLeadEvents(); // Inicializar rastreamento de leads
+    trackLeadFormSubmission(); // Inicializar rastreamento de leads por engajamento
     
     // Adiciona efeito de digitação após um delay
     setTimeout(typewriterEffect, 1000);
@@ -273,13 +321,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Adiciona classe para animações CSS
     document.body.classList.add('loaded');
     
-    // Rastrear carregamento da página
+    // Rastrear carregamento da página - Vercel Analytics
     if (window.va) {
         window.va('track', 'Page Load', {
             page: 'landing-page',
             timestamp: new Date().toISOString()
         });
     }
+    
+    // Facebook Pixel PageView já é disparado automaticamente no HTML
 });
 
 // Adiciona efeito de parallax suave
