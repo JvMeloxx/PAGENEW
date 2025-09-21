@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "npx http-server -p 8080",
     "start": "npx http-server -p 8080",
-    "build": "mkdir -p public && cp -r *.html *.css *.js *.svg *.png logo public/ 2>/dev/null || (mkdir public 2>nul & copy *.html public\\ & copy *.css public\\ & copy *.js public\\ & copy *.svg public\\ & xcopy logo public\\logo\\ /E /I)",
+    "build": "if not exist public mkdir public && copy index.html public\\ && copy styles.css public\\ && copy script.js public\\ && copy logo.svg public\\ && copy selo-seguro.svg public\\ && if not exist public\\logo mkdir public\\logo && copy logo\\\"Camada 2.png\" public\\logo\\",
     "deploy": "vercel --prod"
   },
   "keywords": [
