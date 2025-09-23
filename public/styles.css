@@ -54,7 +54,6 @@ body {
 .logo-container {
     text-align: center;
     margin-bottom: 2rem;
-    animation: fadeInDown 1s ease-out;
 }
 
 .hero-logo {
@@ -137,7 +136,6 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
-    animation: fadeInUp 1s ease-out 0.5s both;
 }
 
 .security-badge:hover {
@@ -179,28 +177,6 @@ body {
     100% {
         transform: scale(1);
         box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
-    }
-}
-
-@keyframes fadeInDown {
-    0% {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInUp {
-    0% {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
     }
 }
 
