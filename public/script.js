@@ -1,12 +1,11 @@
-// Timer regressivo otimizado
+// Timer regressivo
 function startTimer() {
+    // Define o tempo inicial (8 horas em segundos)
     let timeLeft = 8 * 60 * 60; // 8 horas
     
     const hoursElement = document.getElementById('hours');
     const minutesElement = document.getElementById('minutes');
     const secondsElement = document.getElementById('seconds');
-    
-    if (!hoursElement || !minutesElement || !secondsElement) return;
     
     function updateTimer() {
         const hours = Math.floor(timeLeft / 3600);
@@ -20,25 +19,26 @@ function startTimer() {
         if (timeLeft > 0) {
             timeLeft--;
         } else {
+            // Reinicia o timer quando chega a zero
             timeLeft = 8 * 60 * 60;
         }
     }
     
+    // Atualiza o timer imediatamente
     updateTimer();
+    
+    // Atualiza a cada segundo
     setInterval(updateTimer, 1000);
 }
 
-// Animações de scroll otimizadas
+// Animações de scroll
 function handleScrollAnimations() {
     const fadeElements = document.querySelectorAll('.fade-in');
-    
-    if (!fadeElements.length) return;
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                observer.unobserve(entry.target); // Para de observar após animar
             }
         });
     }, {
@@ -50,40 +50,6 @@ function handleScrollAnimations() {
         observer.observe(element);
     });
 }
-
-// Tracking de eventos otimizado
-function trackLeadEvents() {
-    const ctaButtons = document.querySelectorAll('.cta-button');
-    
-    ctaButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            // Facebook Pixel tracking
-            if (typeof fbq !== 'undefined') {
-                fbq('track', 'Lead', {
-                    content_name: 'WhatsApp Group Join',
-                    content_category: 'Lead Generation',
-                    value: 0.00,
-                    currency: 'BRL'
-                });
-            }
-            
-            // Vercel Analytics tracking
-            if (typeof va !== 'undefined') {
-                va('track', 'cta_click', {
-                    button_id: this.id || 'unknown',
-                    button_text: this.textContent.trim()
-                });
-            }
-        });
-    });
-}
-
-// Inicialização otimizada
-document.addEventListener('DOMContentLoaded', function() {
-    startTimer();
-    handleScrollAnimations();
-    trackLeadEvents();
-});
 
 // Smooth scroll para âncoras
 function handleSmoothScroll() {

@@ -3,15 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Grupo secreto de ofertas relâmpago da Shopee e Amazon. Cupons exclusivos e promoções que acabam em minutos. 100% grátis!">
     <title>🔥 Achadinhos Shopee & Amazon - Grupo Secreto</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet"></noscript>
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <!-- Vercel Analytics -->
     <script>
@@ -43,7 +38,7 @@
         <div class="container">
             <div class="hero-content">
                 <div class="logo-container">
-                    <img src="logo/Camada 2.png" alt="Acha Dinhos Logo" class="hero-logo" loading="eager" width="200" height="200">
+                    <img src="logo/Camada 2.png" alt="Acha Dinhos Logo" class="hero-logo">
                 </div>
                 <h1 class="hero-title">
                     🔥 Últimas vagas para entrar no grupo secreto de <span class="highlight">Achadinhos Shopee & Amazon!</span>
@@ -56,7 +51,7 @@
                 </a>
                 <div class="security-badges">
                     <div class="security-badge">
-                        <img src="selo-seguro.svg" alt="100% Seguro" class="security-icon" loading="lazy" width="24" height="24">
+                        <img src="selo-seguro.svg" alt="100% Seguro" class="security-icon">
                         <span class="security-text">100% Seguro</span>
                     </div>
                     <div class="security-badge">
@@ -119,22 +114,22 @@
                     As ofertas mudam a cada minuto, não deixe para depois.
                 </p>
                 <div class="timer-container">
-                    <div class="timer" style="min-height: 120px;">
-                    <div class="timer-item" style="min-width: 80px; min-height: 100px;">
-                        <span class="timer-number" id="hours">08</span>
-                        <span class="timer-label">Horas</span>
+                    <div class="timer">
+                        <div class="timer-item">
+                            <span class="timer-number" id="hours">07</span>
+                            <span class="timer-label">Horas</span>
+                        </div>
+                        <div class="timer-separator">:</div>
+                        <div class="timer-item">
+                            <span class="timer-number" id="minutes">59</span>
+                            <span class="timer-label">Minutos</span>
+                        </div>
+                        <div class="timer-separator">:</div>
+                        <div class="timer-item">
+                            <span class="timer-number" id="seconds">59</span>
+                            <span class="timer-label">Segundos</span>
+                        </div>
                     </div>
-                    <div class="timer-separator">:</div>
-                    <div class="timer-item" style="min-width: 80px; min-height: 100px;">
-                        <span class="timer-number" id="minutes">00</span>
-                        <span class="timer-label">Minutos</span>
-                    </div>
-                    <div class="timer-separator">:</div>
-                    <div class="timer-item" style="min-width: 80px; min-height: 100px;">
-                        <span class="timer-number" id="seconds">00</span>
-                        <span class="timer-label">Segundos</span>
-                    </div>
-                </div>
                 </div>
             </div>
         </div>
@@ -193,6 +188,6 @@
         </div>
     </section>
 
-    <script defer src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
