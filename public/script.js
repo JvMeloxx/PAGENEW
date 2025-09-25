@@ -203,9 +203,9 @@ function trackLeadEvents() {
                 });
             }
             
-            // Facebook Pixel - InitiateCheckout (clique no WhatsApp)
+            // Facebook Pixel - Lead (clique no WhatsApp)
             if (window.fbq) {
-                window.fbq('track', 'InitiateCheckout', {
+                window.fbq('track', 'Lead', {
                     content_name: 'WhatsApp CTA Click',
                     content_category: 'Lead Generation',
                     value: 1,
@@ -228,9 +228,9 @@ function trackLeadEvents() {
                 });
             }
             
-            // Facebook Pixel - InitiateCheckout para todos os CTAs
+            // Facebook Pixel - Lead para todos os CTAs
             if (window.fbq) {
-                window.fbq('track', 'InitiateCheckout', {
+                window.fbq('track', 'Lead', {
                     content_name: button.textContent.trim(),
                     content_category: 'CTA Button',
                     value: 1,
@@ -279,31 +279,6 @@ function trackLeadEvents() {
     });
 }
 
-// Função para simular evento Lead (quando preenche formulário)
-function trackLeadFormSubmission() {
-    // Como não há formulário real, vamos simular com base em engajamento alto
-    let highEngagementTracked = false;
-    
-    // Rastrear Lead baseado em tempo na página + scroll profundo
-    setTimeout(() => {
-        const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
-        
-        if (scrollPercent >= 50 && !highEngagementTracked) {
-            highEngagementTracked = true;
-            
-            // Facebook Pixel - Lead (engajamento alto)
-            if (window.fbq) {
-                window.fbq('track', 'Lead', {
-                    content_name: 'High Engagement Lead',
-                    content_category: 'Lead Generation',
-                    value: 5,
-                    currency: 'BRL'
-                });
-            }
-        }
-    }, 30000); // Após 30 segundos na página
-}
-
 // Inicialização quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', function() {
     startTimer();
@@ -313,7 +288,6 @@ document.addEventListener('DOMContentLoaded', function() {
     createFloatingParticles();
     addVisitorCounter();
     trackLeadEvents(); // Inicializar rastreamento de leads
-    trackLeadFormSubmission(); // Inicializar rastreamento de leads por engajamento
     
     // Adiciona efeito de digitação após um delay
     setTimeout(typewriterEffect, 1000);
