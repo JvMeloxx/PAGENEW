@@ -190,45 +190,11 @@ function addVisitorCounter() {
 
 // Função para rastrear eventos de leads
 function trackLeadEvents() {
-    // Rastrear cliques no botão principal CTA
-    const mainCTA = document.getElementById('main-cta');
-    if (mainCTA) {
-        mainCTA.addEventListener('click', function() {
-            // Vercel Analytics
-            if (window.va) {
-                window.va('track', 'Lead Click', {
-                    button: 'main-cta',
-                    location: 'hero-section',
-                    timestamp: new Date().toISOString()
-                });
-            }
-            
-            // Facebook Pixel - Lead (clique no WhatsApp)
-            if (window.fbq) {
-                window.fbq('track', 'Lead', {
-                    content_name: 'WhatsApp CTA Click',
-                    content_category: 'Lead Generation',
-                    value: 1,
-                    currency: 'BRL'
-                });
-            }
-        });
-    }
-    
-    // Rastrear cliques em todos os botões CTA
+    // Rastrear cliques nos botões CTA para Facebook Pixel
     const ctaButtons = document.querySelectorAll('.cta-button');
     ctaButtons.forEach((button, index) => {
         button.addEventListener('click', function() {
-            // Vercel Analytics
-            if (window.va) {
-                window.va('track', 'CTA Click', {
-                    button_index: index,
-                    button_text: button.textContent.trim(),
-                    timestamp: new Date().toISOString()
-                });
-            }
-            
-            // Facebook Pixel - Lead para todos os CTAs
+            // Facebook Pixel - Lead apenas nos cliques dos CTAs
             if (window.fbq) {
                 window.fbq('track', 'Lead', {
                     content_name: button.textContent.trim(),
@@ -238,44 +204,6 @@ function trackLeadEvents() {
                 });
             }
         });
-    });
-    
-    // Rastrear tempo na página (engajamento)
-    let timeOnPage = 0;
-    const timeTracker = setInterval(() => {
-        timeOnPage += 10;
-        
-        // Marcos de tempo importantes para leads
-        if (timeOnPage === 30 && window.va) {
-            window.va('track', 'Engagement', { time_on_page: '30_seconds' });
-        }
-        if (timeOnPage === 60 && window.va) {
-            window.va('track', 'Engagement', { time_on_page: '1_minute' });
-        }
-        if (timeOnPage === 120 && window.va) {
-            window.va('track', 'Engagement', { time_on_page: '2_minutes' });
-        }
-    }, 10000); // A cada 10 segundos
-    
-    // Rastrear scroll profundo (interesse)
-    let maxScroll = 0;
-    window.addEventListener('scroll', function() {
-        const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
-        
-        if (scrollPercent > maxScroll) {
-            maxScroll = scrollPercent;
-            
-            // Marcos de scroll importantes
-            if (maxScroll >= 25 && maxScroll < 50 && window.va) {
-                window.va('track', 'Scroll Depth', { depth: '25_percent' });
-            }
-            if (maxScroll >= 50 && maxScroll < 75 && window.va) {
-                window.va('track', 'Scroll Depth', { depth: '50_percent' });
-            }
-            if (maxScroll >= 75 && window.va) {
-                window.va('track', 'Scroll Depth', { depth: '75_percent' });
-            }
-        }
     });
 }
 
