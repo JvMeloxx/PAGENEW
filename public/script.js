@@ -1,11 +1,12 @@
-// Timer regressivo
+// Timer regressivo otimizado
 function startTimer() {
-    // Define o tempo inicial (8 horas em segundos)
     let timeLeft = 8 * 60 * 60; // 8 horas
     
     const hoursElement = document.getElementById('hours');
     const minutesElement = document.getElementById('minutes');
     const secondsElement = document.getElementById('seconds');
+    
+    if (!hoursElement || !minutesElement || !secondsElement) return;
     
     function updateTimer() {
         const hours = Math.floor(timeLeft / 3600);
@@ -19,26 +20,25 @@ function startTimer() {
         if (timeLeft > 0) {
             timeLeft--;
         } else {
-            // Reinicia o timer quando chega a zero
             timeLeft = 8 * 60 * 60;
         }
     }
     
-    // Atualiza o timer imediatamente
     updateTimer();
-    
-    // Atualiza a cada segundo
     setInterval(updateTimer, 1000);
 }
 
-// Animações de scroll
+// Animações de scroll otimizadas
 function handleScrollAnimations() {
     const fadeElements = document.querySelectorAll('.fade-in');
+    
+    if (!fadeElements.length) return;
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+                observer.unobserve(entry.target); // Para de observar após animar
             }
         });
     }, {
@@ -50,6 +50,40 @@ function handleScrollAnimations() {
         observer.observe(element);
     });
 }
+
+// Tracking de eventos otimizado
+function trackLeadEvents() {
+    const ctaButtons = document.querySelectorAll('.cta-button');
+    
+    ctaButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            // Facebook Pixel tracking
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Lead', {
+                    content_name: 'WhatsApp Group Join',
+                    content_category: 'Lead Generation',
+                    value: 0.00,
+                    currency: 'BRL'
+                });
+            }
+            
+            // Vercel Analytics tracking
+            if (typeof va !== 'undefined') {
+                va('track', 'cta_click', {
+                    button_id: this.id || 'unknown',
+                    button_text: this.textContent.trim()
+                });
+            }
+        });
+    });
+}
+
+// Inicialização otimizada
+document.addEventListener('DOMContentLoaded', function() {
+    startTimer();
+    handleScrollAnimations();
+    trackLeadEvents();
+});
 
 // Smooth scroll para âncoras
 function handleSmoothScroll() {
@@ -190,13 +224,47 @@ function addVisitorCounter() {
 
 // Função para rastrear eventos de leads
 function trackLeadEvents() {
-    // Rastrear cliques nos botões CTA para Facebook Pixel
+    // Rastrear cliques no botão principal CTA
+    const mainCTA = document.getElementById('main-cta');
+    if (mainCTA) {
+        mainCTA.addEventListener('click', function() {
+            // Vercel Analytics
+            if (window.va) {
+                window.va('track', 'Lead Click', {
+                    button: 'main-cta',
+                    location: 'hero-section',
+                    timestamp: new Date().toISOString()
+                });
+            }
+            
+            // Facebook Pixel - InitiateCheckout (clique no WhatsApp)
+            if (window.fbq) {
+                window.fbq('track', 'InitiateCheckout', {
+                    content_name: 'WhatsApp CTA Click',
+                    content_category: 'Lead Generation',
+                    value: 1,
+                    currency: 'BRL'
+                });
+            }
+        });
+    }
+    
+    // Rastrear cliques em todos os botões CTA
     const ctaButtons = document.querySelectorAll('.cta-button');
     ctaButtons.forEach((button, index) => {
         button.addEventListener('click', function() {
-            // Facebook Pixel - Lead apenas nos cliques dos CTAs
+            // Vercel Analytics
+            if (window.va) {
+                window.va('track', 'CTA Click', {
+                    button_index: index,
+                    button_text: button.textContent.trim(),
+                    timestamp: new Date().toISOString()
+                });
+            }
+            
+            // Facebook Pixel - InitiateCheckout para todos os CTAs
             if (window.fbq) {
-                window.fbq('track', 'Lead', {
+                window.fbq('track', 'InitiateCheckout', {
                     content_name: button.textContent.trim(),
                     content_category: 'CTA Button',
                     value: 1,
@@ -205,6 +273,69 @@ function trackLeadEvents() {
             }
         });
     });
+    
+    // Rastrear tempo na página (engajamento)
+    let timeOnPage = 0;
+    const timeTracker = setInterval(() => {
+        timeOnPage += 10;
+        
+        // Marcos de tempo importantes para leads
+        if (timeOnPage === 30 && window.va) {
+            window.va('track', 'Engagement', { time_on_page: '30_seconds' });
+        }
+        if (timeOnPage === 60 && window.va) {
+            window.va('track', 'Engagement', { time_on_page: '1_minute' });
+        }
+        if (timeOnPage === 120 && window.va) {
+            window.va('track', 'Engagement', { time_on_page: '2_minutes' });
+        }
+    }, 10000); // A cada 10 segundos
+    
+    // Rastrear scroll profundo (interesse)
+    let maxScroll = 0;
+    window.addEventListener('scroll', function() {
+        const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+        
+        if (scrollPercent > maxScroll) {
+            maxScroll = scrollPercent;
+            
+            // Marcos de scroll importantes
+            if (maxScroll >= 25 && maxScroll < 50 && window.va) {
+                window.va('track', 'Scroll Depth', { depth: '25_percent' });
+            }
+            if (maxScroll >= 50 && maxScroll < 75 && window.va) {
+                window.va('track', 'Scroll Depth', { depth: '50_percent' });
+            }
+            if (maxScroll >= 75 && window.va) {
+                window.va('track', 'Scroll Depth', { depth: '75_percent' });
+            }
+        }
+    });
+}
+
+// Função para simular evento Lead (quando preenche formulário)
+function trackLeadFormSubmission() {
+    // Como não há formulário real, vamos simular com base em engajamento alto
+    let highEngagementTracked = false;
+    
+    // Rastrear Lead baseado em tempo na página + scroll profundo
+    setTimeout(() => {
+        const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+        
+        if (scrollPercent >= 50 && !highEngagementTracked) {
+            highEngagementTracked = true;
+            
+            // Facebook Pixel - Lead (engajamento alto)
+            if (window.fbq) {
+                window.fbq('track', 'Lead', {
+                    content_name: 'High Engagement Lead',
+                    content_category: 'Lead Generation',
+                    value: 5,
+                    currency: 'BRL'
+                });
+            }
+        }
+    }, 30000); // Após 30 segundos na página
 }
 
 // Inicialização quando o DOM estiver carregado
@@ -216,6 +347,7 @@ document.addEventListener('DOMContentLoaded', function() {
     createFloatingParticles();
     addVisitorCounter();
     trackLeadEvents(); // Inicializar rastreamento de leads
+    trackLeadFormSubmission(); // Inicializar rastreamento de leads por engajamento
     
     // Adiciona efeito de digitação após um delay
     setTimeout(typewriterEffect, 1000);
