@@ -20,12 +20,37 @@ body {
     padding: 0 20px;
 }
 
-/* Hero Section */
+/* Critical CSS - Above the fold styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Seção Hero - Otimizada para mobile */
 .hero {
-    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #4caf50 100%);
     min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     display: flex;
     align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
     position: relative;
     overflow: hidden;
 }
@@ -37,348 +62,168 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.3);
     z-index: 1;
 }
 
 .hero-content {
-    text-align: center;
-    color: white;
     position: relative;
     z-index: 2;
     max-width: 800px;
-    margin: 0 auto;
+    padding: 2rem;
 }
 
-/* Logo */
-.logo-container {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.hero-logo {
-    width: 120px;
-    height: 120px;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-    transition: transform 0.3s ease;
-}
-
-.hero-logo:hover {
-    transform: scale(1.05) rotate(5deg);
+.logo {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 2rem;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    object-fit: cover;
 }
 
 .hero-title {
-    font-size: 3.5rem;
-    font-weight: 800;
-    margin-bottom: 1.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
     line-height: 1.2;
 }
 
-.hero-title .highlight {
-    color: #ffeb3b;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+.highlight {
+    background: linear-gradient(45deg, #ffeb3b, #ff9800);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
 }
 
 .hero-subtitle {
-    font-size: 1.4rem;
-    margin-bottom: 2.5rem;
-    font-weight: 400;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+/* Timer */
+.timer {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.timer-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    min-width: 80px;
+}
+
+.timer-number {
+    font-size: 2rem;
+    font-weight: bold;
+    display: block;
+}
+
+.timer-label {
+    font-size: 0.8rem;
+    opacity: 0.8;
 }
 
 /* Botões CTA */
 .cta-button {
     display: inline-block;
-    background: linear-gradient(45deg, #4caf50, #8bc34a);
+    background: linear-gradient(45deg, #25d366, #128c7e);
     color: white;
-    padding: 20px 40px;
-    font-size: 1.3rem;
-    font-weight: 700;
+    padding: 1rem 2rem;
     text-decoration: none;
     border-radius: 50px;
-    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin: 1rem 0.5rem;
     transition: all 0.3s ease;
-    border: 3px solid #fff;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-    user-select: none;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    border: none;
+    cursor: pointer;
 }
 
 .cta-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 35px rgba(76, 175, 80, 0.6);
-    background: linear-gradient(45deg, #45a049, #7cb342);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
 }
 
-/* Selos de Segurança */
-.security-badges {
+/* Selos de segurança */
+.security-seals {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    margin-top: 25px;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
     flex-wrap: wrap;
 }
 
-.security-badge {
+.seal {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
     background: rgba(255, 255, 255, 0.1);
-    padding: 10px 15px;
+    padding: 0.5rem 1rem;
     border-radius: 25px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-}
-
-.security-badge:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-}
-
-.security-icon {
-    width: 20px;
-    height: 20px;
-}
-
-.security-badge i {
-    color: #4CAF50;
-    font-size: 16px;
-}
-
-.security-text {
-    color: white;
     font-size: 0.9rem;
-    font-weight: 600;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
 }
 
-/* Animação de pulsação */
-.pulse {
-    animation: pulse 2s infinite;
+.seal img {
+    width: 24px;
+    height: 24px;
 }
 
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
-    }
-    50% {
-        transform: scale(1.05);
-        box-shadow: 0 12px 35px rgba(76, 175, 80, 0.7);
-    }
-    100% {
-        transform: scale(1);
-        box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
-    }
-}
-
-/* Seção de Benefícios */
+/* Seção de benefícios */
 .benefits {
-    padding: 80px 0;
+    padding: 4rem 0;
     background: #f8f9fa;
 }
 
 .benefits-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
-    margin-top: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
 }
 
 .benefit-item {
     background: white;
-    padding: 40px 30px;
-    border-radius: 20px;
+    padding: 2rem;
+    border-radius: 15px;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    border-top: 5px solid #ff6b35;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
 .benefit-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
 }
 
 .benefit-icon {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(45deg, #ff6b35, #f7931e);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-    font-size: 2rem;
-    color: white;
+    font-size: 3rem;
+    margin-bottom: 1rem;
 }
 
-.benefit-item h3 {
+.benefit-title {
     font-size: 1.3rem;
     font-weight: 600;
-    margin-bottom: 15px;
+    margin-bottom: 1rem;
     color: #333;
 }
 
-.benefit-item p {
+.benefit-description {
     color: #666;
-    font-size: 1rem;
+    line-height: 1.6;
 }
 
-/* Seção de Urgência */
-.urgency {
-    background: linear-gradient(135deg, #d32f2f 0%, #f44336 100%);
-    padding: 80px 0;
-    color: white;
-    text-align: center;
-}
-
-.urgency-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.urgency-text {
-    font-size: 1.2rem;
-    margin-bottom: 40px;
-    opacity: 0.9;
-}
-
-/* Timer */
-.timer-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-}
-
-.timer {
-    display: flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-}
-
-.timer-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 15px;
-}
-
-.timer-number {
-    font-size: 3rem;
-    font-weight: 800;
-    background: linear-gradient(45deg, #ffeb3b, #ffc107);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.timer-label {
-    font-size: 0.9rem;
-    margin-top: 5px;
-    opacity: 0.8;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.timer-separator {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin: 0 10px;
-    color: #ffeb3b;
-}
-
-/* Prova Social */
-.social-proof {
-    padding: 80px 0;
-    background: #f8f9fa;
-}
-
-.section-title {
-    text-align: center;
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin-bottom: 50px;
-    color: #333;
-}
-
-.testimonials {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 30px;
-}
-
-.testimonial {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border-left: 5px solid #4caf50;
-}
-
-.testimonial-content p {
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-    font-style: italic;
-    color: #555;
-}
-
-.testimonial-author {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.testimonial-author strong {
-    color: #333;
-    font-weight: 600;
-}
-
-.testimonial-author span {
-    color: #ffc107;
-    font-size: 1.2rem;
-}
-
-/* CTA Final */
-.final-cta {
-    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #4caf50 100%);
-    padding: 80px 0;
-    text-align: center;
-    color: white;
-}
-
-.final-cta-title {
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin-bottom: 30px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.disclaimer {
-    margin-top: 20px;
-    font-size: 1rem;
-    opacity: 0.9;
-    font-weight: 500;
-}
-
-/* Animações de fade-in */
+/* Animações */
 .fade-in {
     opacity: 0;
     transform: translateY(30px);
@@ -390,334 +235,61 @@ body {
     transform: translateY(0);
 }
 
-/* Responsividade */
-@media (max-width: 1024px) {
-    .hero-title {
-        font-size: 3rem;
-    }
-    
-    .hero-subtitle {
-        font-size: 1.3rem;
-    }
-    
-    .benefits {
-        padding: 60px 0;
-    }
-    
-    .urgency {
-        padding: 60px 0;
-    }
-    
-    .social-proof {
-        padding: 60px 0;
-    }
-    
-    .final-cta {
-        padding: 60px 0;
-    }
-}
-
+/* Responsividade mobile */
 @media (max-width: 768px) {
-    .container {
-        padding: 0 20px;
-    }
-    
     .hero {
-        padding: 40px 0;
-        min-height: 90vh;
+        min-height: 100vh;
+        padding: 1rem 0;
     }
     
-    .hero-title {
-        font-size: 2.2rem;
-        margin-bottom: 1rem;
-        line-height: 1.3;
+    .hero-content {
+        padding: 1rem;
     }
     
-    .hero-subtitle {
-        font-size: 1.1rem;
-        margin-bottom: 2rem;
-    }
-    
-    .cta-button {
-        padding: 16px 28px;
-        font-size: 1rem;
-        width: 100%;
-        max-width: 350px;
-        text-align: center;
-    }
-    
-    .security-badges {
-        gap: 15px;
-        margin-top: 20px;
-    }
-    
-    .security-badge {
-        padding: 8px 12px;
-        font-size: 0.85rem;
-    }
-    
-    .security-text {
-        font-size: 0.8rem;
-    }
-    
-    .benefits {
-        padding: 50px 0;
-    }
-    
-    .benefits-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-        margin-top: 30px;
-    }
-    
-    .benefit-item {
-        padding: 30px 25px;
-    }
-    
-    .benefit-item h3 {
-        font-size: 1.2rem;
-    }
-    
-    .urgency {
-        padding: 50px 0;
-    }
-    
-    .urgency-title {
-        font-size: 1.8rem;
-        margin-bottom: 15px;
-    }
-    
-    .urgency-text {
-        font-size: 1.1rem;
-        margin-bottom: 30px;
+    .logo {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 1.5rem;
     }
     
     .timer {
-        padding: 20px 15px;
-        flex-direction: row;
-        justify-content: center;
+        gap: 0.5rem;
     }
     
     .timer-item {
-        margin: 0 10px;
+        padding: 0.8rem;
+        min-width: 70px;
     }
     
     .timer-number {
-        font-size: 2.2rem;
-    }
-    
-    .timer-label {
-        font-size: 0.8rem;
-    }
-    
-    .timer-separator {
-        font-size: 2rem;
-        margin: 0 5px;
-    }
-    
-    .social-proof {
-        padding: 50px 0;
-    }
-    
-    .section-title {
-        font-size: 1.8rem;
-        margin-bottom: 40px;
-    }
-    
-    .testimonials {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-    
-    .testimonial {
-        padding: 25px 20px;
-    }
-    
-    .final-cta {
-        padding: 50px 0;
-    }
-    
-    .final-cta-title {
-        font-size: 1.6rem;
-        margin-bottom: 25px;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        padding: 0 15px;
-    }
-    
-    .hero {
-        padding: 30px 0;
-        min-height: 85vh;
-    }
-    
-    .hero-title {
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
-        line-height: 1.4;
-    }
-    
-    .hero-subtitle {
-        font-size: 1rem;
-        margin-bottom: 1.5rem;
-        line-height: 1.5;
+        font-size: 1.5rem;
     }
     
     .cta-button {
-        padding: 14px 20px;
-        font-size: 0.95rem;
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        margin: 0.5rem 0.25rem;
         width: 100%;
         max-width: 300px;
-        border-radius: 40px;
     }
     
-    .benefits {
-        padding: 40px 0;
+    .security-seals {
+        gap: 0.5rem;
+    }
+    
+    .seal {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
     }
     
     .benefits-grid {
-        gap: 20px;
-        margin-top: 25px;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
     
     .benefit-item {
-        padding: 25px 20px;
-    }
-    
-    .benefit-icon {
-        width: 60px;
-        height: 60px;
-        font-size: 1.5rem;
-        margin-bottom: 15px;
-    }
-    
-    .benefit-item h3 {
-        font-size: 1.1rem;
-        margin-bottom: 10px;
-    }
-    
-    .benefit-item p {
-        font-size: 0.9rem;
-    }
-    
-    .urgency {
-        padding: 40px 0;
-    }
-    
-    .urgency-title {
-        font-size: 1.5rem;
-        margin-bottom: 12px;
-        line-height: 1.3;
-    }
-    
-    .urgency-text {
-        font-size: 1rem;
-        margin-bottom: 25px;
-    }
-    
-    .timer {
-        padding: 15px 10px;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-    
-    .timer-item {
-        margin: 0 5px;
-        min-width: 60px;
-    }
-    
-    .timer-number {
-        font-size: 1.8rem;
-    }
-    
-    .timer-label {
-        font-size: 0.7rem;
-        margin-top: 3px;
-    }
-    
-    .timer-separator {
-        font-size: 1.5rem;
-        margin: 0 3px;
-    }
-    
-    .social-proof {
-        padding: 40px 0;
-    }
-    
-    .section-title {
-        font-size: 1.5rem;
-        margin-bottom: 30px;
-        line-height: 1.3;
-    }
-    
-    .testimonials {
-        gap: 20px;
-    }
-    
-    .testimonial {
-        padding: 20px 15px;
-    }
-    
-    .testimonial-content p {
-        font-size: 1rem;
-        margin-bottom: 15px;
-    }
-    
-    .testimonial-author {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 5px;
-    }
-    
-    .final-cta {
-        padding: 40px 0;
-    }
-    
-    .final-cta-title {
-        font-size: 1.4rem;
-        margin-bottom: 20px;
-        line-height: 1.4;
-    }
-    
-    .disclaimer {
-        font-size: 0.9rem;
-        margin-top: 15px;
+        padding: 1.5rem;
     }
 }
 
-@media (max-width: 360px) {
-    .hero-title {
-        font-size: 1.6rem;
-    }
-    
-    .hero-subtitle {
-        font-size: 0.95rem;
-    }
-    
-    .cta-button {
-        padding: 12px 18px;
-        font-size: 0.9rem;
-    }
-    
-    .timer {
-        padding: 12px 8px;
-    }
-    
-    .timer-number {
-        font-size: 1.5rem;
-    }
-    
-    .timer-separator {
-        font-size: 1.2rem;
-    }
-    
-    .urgency-title {
-        font-size: 1.3rem;
-    }
-    
-    .final-cta-title {
-        font-size: 1.2rem;
-    }
-}
+/* ... existing code ...
